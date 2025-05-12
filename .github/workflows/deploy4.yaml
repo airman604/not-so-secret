@@ -1,0 +1,34 @@
+name: Deploy Lambda Function (OIDC)
+
+on:
+  workflow_dispatch:  # Enables manual trigger from GitHub UI
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::373277780983:role/TestGitHubActionsRole
+          aws-region: us-east-1
+
+      - name: Deploy Lambda
+        run: |
+          ZIP_FILE="function.zip"
+
+          # Step 1: Zip the Python file
+          zip $ZIP_FILE lambda_function.py
+
+          # Step 2: Update Lambda
+          aws lambda update-function-code \
+              --function-name AcmeLambdaFunction
+              --zip-file fileb://$ZIP_FILE
