@@ -1,4 +1,4 @@
-name: Deploy Lambda Function
+name: 1 - Deploy Lambda Function
 
 on:
   workflow_dispatch:  # Enables manual trigger from GitHub UI
