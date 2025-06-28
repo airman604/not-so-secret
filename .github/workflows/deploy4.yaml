@@ -1,4 +1,4 @@
-name: 4 - Deploy Lambda Function (OIDC)
+name: 4 - (OIDC) Deploy Lambda Function
 
 on:
   workflow_dispatch:  # Enables manual trigger from GitHub UI
